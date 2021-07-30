@@ -53,12 +53,13 @@ namespace FootlockerInvoiceApp.Items
 
         //need a function to get a list of all invoices to see if an item being delted is on an exsisting invoice.
 
-        //if the item is on an invoice tell the user the invoice id with the item.
+        //if the item is on an invoice tell the user the invoice id with the item. use a pop up
 
         //add items
 
         //edit items (do not let the code be updated.)
 
         //delete items
+
     }
 }
