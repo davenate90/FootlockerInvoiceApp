@@ -8,5 +8,8 @@ namespace FootlockerInvoiceApp.Main
 {
     class clsMainLogic
     {
+        public class Inovices
+        {
+        }
     }
 }
