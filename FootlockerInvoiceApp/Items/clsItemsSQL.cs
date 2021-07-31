@@ -10,15 +10,6 @@ using System.Reflection;
 public class clsItemsSQL
 {
 
-    /// <summary>
-    /// creates SQL statement to add item.
-    /// </summary>
-
-    public clsItemsSQL()
-    {
-        sConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data source= " + Directory.GetCurrentDirectory() + "\\..\\..\\Resources\\Footlocker.mdb";
-    }
-
     /// <param name="name"></param>
     /// <param name="cost"></param>
     /// <param name="description"></param>
