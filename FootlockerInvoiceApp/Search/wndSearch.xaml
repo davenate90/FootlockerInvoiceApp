@@ -5,8 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FootlockerInvoiceApp.Search"
         mc:Ignorable="d"
-        Title="wndSearch" Height="450" Width="800">
+        Title="wndSearch" Height="450" Width="502.86">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="71*"/>
+            <ColumnDefinition Width="424*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid HorizontalAlignment="Left" Height="216" Margin="22,128,0,0" VerticalAlignment="Top" Width="453" Grid.ColumnSpan="2"/>
+        <Button x:Name="cancelBtn" Content="Cancel" HorizontalAlignment="Left" Margin="329.13,389,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="cancelBtn_Click"/>
+        <Button x:Name="selectBtn" Content="Select" HorizontalAlignment="Left" Margin="237.13,389,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="selectBtn_Click"/>
+        <ComboBox HorizontalAlignment="Left" Margin="22,50,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+        <ComboBox HorizontalAlignment="Left" Margin="76,50,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+        <ComboBox HorizontalAlignment="Left" Margin="201,50,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+        <Label Content="Invoice ID" HorizontalAlignment="Left" Margin="22,24,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+        <Label Content="Date" HorizontalAlignment="Left" Margin="76,24,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+        <Label Content="Total Charge" HorizontalAlignment="Left" Margin="201,24,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+        <Label Content="Search Invoices" HorizontalAlignment="Left" Margin="22,102,0,0" VerticalAlignment="Top" Width="453" Grid.ColumnSpan="2"/>
+        <Button x:Name="clearBtn" Content="Clear" Grid.Column="1" HorizontalAlignment="Left" Margin="329,50,0,0" VerticalAlignment="Top" Width="75" Height="22"/>
+
     </Grid>
 </Window>

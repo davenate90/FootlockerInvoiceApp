@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using FootlockerInvoiceApp.Main;
 
 namespace FootlockerInvoiceApp.Search
 {
@@ -19,9 +20,28 @@ namespace FootlockerInvoiceApp.Search
     /// </summary>
     public partial class wndSearch : Window
     {
+        clsSearchLogic logic = new clsSearchLogic();
+        clsSearchSQL sql = new clsSearchSQL();
+
         public wndSearch()
         {
-            InitializeComponent();
+            InitializeComponent();            
+        }
+
+        private void cancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //// pass null through as a parameter. If null is passed through as a parameter then main will populate not invoice information.
+            wndMain mainWnd = new wndMain();
+            mainWnd.Show();
+            this.Close();
+        }
+
+        private void selectBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //// pass through the invoice ID with which the main window will do a Scalar query on the invoice id to populate the invoice information.
+            wndMain mainWnd = new wndMain();
+            mainWnd.Show();
+            this.Close();
         }
     }
 }
