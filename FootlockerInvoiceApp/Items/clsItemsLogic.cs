@@ -49,7 +49,7 @@ namespace FootlockerInvoiceApp.Items
             {
                 int rowsReturned = 0;
                 List<Item> myList = new List<Item>();
-                var ds = clsItemsSQL.ExecuteSQLStatement("select * from item", ref rowsReturned);
+                var ds = clsDatabase.ExecuteSQLStatement("select * from item", ref rowsReturned);
 
                 //make a list of Items
                 foreach (DataRow row in ds.Tables[0].Rows)
