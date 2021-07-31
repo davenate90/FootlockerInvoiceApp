@@ -53,6 +53,7 @@ namespace FootlockerInvoiceApp.Items
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //add button
+            //itemLogic.AddItem();
         }
 
         /// <summary>
@@ -62,7 +63,8 @@ namespace FootlockerInvoiceApp.Items
         /// <param name="e"></param>
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            //make sure to pass in the user input and maybe the item refrence
+           // itemLogic.EditItem();
         }
 
         /// <summary>
@@ -72,7 +74,8 @@ namespace FootlockerInvoiceApp.Items
         /// <param name="e"></param>
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            //make sure to pass in the user input and maybe the item refrence
+            //itemLogic.DeleteItem();
         }
     }
 }
