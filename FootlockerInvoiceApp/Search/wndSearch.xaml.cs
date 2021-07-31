@@ -20,14 +20,33 @@ namespace FootlockerInvoiceApp.Search
     /// </summary>
     public partial class wndSearch : Window
     {
+        /// <summary>
+        /// 
+        /// </summary>
         clsSearchLogic logic = new clsSearchLogic();
-        clsSearchSQL sql = new clsSearchSQL();
 
+        /// <summary>
+        /// 
+        /// </summary>
         public wndSearch()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            PopulateInvoices();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        private void PopulateInvoices()
+        {
+            invoiceDataGrid.ItemsSource = logic.GetInvoices();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cancelBtn_Click(object sender, RoutedEventArgs e)
         {
             //// pass null through as a parameter. If null is passed through as a parameter then main will populate not invoice information.
@@ -36,12 +55,27 @@ namespace FootlockerInvoiceApp.Search
             this.Close();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void selectBtn_Click(object sender, RoutedEventArgs e)
         {
             //// pass through the invoice ID with which the main window will do a Scalar query on the invoice id to populate the invoice information.
             wndMain mainWnd = new wndMain();
             mainWnd.Show();
             this.Close();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void filter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            logic.FilterResults(invoiceIDCmb.SelectedItem, dateCmb.SelectedItem, totalChargeCmb.SelectedItem);
         }
     }
 }

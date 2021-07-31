@@ -10,21 +10,14 @@ using System.Reflection;
 public class clsItemsSQL
 {
 
-    /// <summary>
-    /// creates SQL statement to add item.
-    /// </summary>
     /// <param name="name"></param>
     /// <param name="cost"></param>
     /// <param name="description"></param>
     /// <returns></returns>
     public string AddItemSQL(string name, string cost, string description)
-
     {
-
         string sSQL = "Insert Into Item (ItemName, ItemCost, ItemDescription) Values (" + name + ", " + cost + ", " + description + ")";
-
         return sSQL;
-
     }
 
     /// <summary>
