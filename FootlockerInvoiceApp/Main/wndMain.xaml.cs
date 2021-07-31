@@ -29,6 +29,12 @@ namespace FootlockerInvoiceApp.Main
             InitializeComponent();
         }
 
+
+        /// <summary>
+        /// opens up the item window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Item_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();

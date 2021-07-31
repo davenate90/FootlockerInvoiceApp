@@ -85,6 +85,8 @@ namespace FootlockerInvoiceApp.Items
             /// short description of the item
             /// </summary>
             public string ItemDescription { get; set; }
+
+            //put in override for ToString() so combo box has just the name of the items.
         }
 
         //need a function to get a list of all invoices to see if an item being delted is on an exsisting invoice.
@@ -92,10 +94,10 @@ namespace FootlockerInvoiceApp.Items
         /// this function will get a list of all invoices that can be used to refrence the invoices in the database.
         /// </summary>
         /// <returns></returns>
-        //// public List<clsMainLogic.Inovices> GetInovices() 
-        //// {
+        //public List<clsMainLogic.Inovices> GetInovices() 
+        // {
 
-        //// }
+        // }
 
         //if the item is on an invoice tell the user the invoice id with the item. use a pop up
         /// <summary>
