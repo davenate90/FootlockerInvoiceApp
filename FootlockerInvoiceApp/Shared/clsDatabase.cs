@@ -18,7 +18,8 @@ namespace FootlockerInvoiceApp.Shared
         /// </summary>
         public clsDatabase()
         {
-            sConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data source= " + Directory.GetCurrentDirectory() + "\\Footlocker.mdb";
+            sConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data source= " + Directory.GetCurrentDirectory() + "\\..\\..\\Resources\\Footlocker.mdb";
+            //changed the flie directory to resources.
         }
 
         /// <summary>
