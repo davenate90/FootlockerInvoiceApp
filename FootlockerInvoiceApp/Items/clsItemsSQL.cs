@@ -11,6 +11,14 @@ public class clsItemsSQL
 {
 
     /// <summary>
+    /// Constructor
+    /// </summary>
+    public clsItemsSQL() 
+    {
+
+    }
+
+    /// <summary>
     /// creates SQL statement to add item.
     /// </summary>
     /// <param name="name"></param>
