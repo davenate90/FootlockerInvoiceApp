@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Data;
 using FootlockerInvoiceApp.Main;
 using FootlockerInvoiceApp.Search;
+using FootlockerInvoiceApp.Shared;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,9 @@ namespace FootlockerInvoiceApp.Items
         /// <summary>
         /// all of the logic classes that I can use.
         /// </summary>
-        clsItemsSQL mySQL;
+        ///
+        clsDatabase clsDatabase;
+        clsItemsSQL clsItemsSQL;
         clsMainLogic clsMainLogic;
         clsSearchLogic clsSearchLogic;
         
@@ -26,11 +29,13 @@ namespace FootlockerInvoiceApp.Items
         public clsItemsLogic() 
         {
             //set up new object for item class
-            mySQL = new clsItemsSQL();
+            clsItemsSQL = new clsItemsSQL();
             //set up new object for main class
             clsMainLogic = new clsMainLogic();
             //set up new object for search class
             clsSearchLogic = new clsSearchLogic();
+            //set up new object for the database
+            clsDatabase = new clsDatabase();
         }
 
         //Need to make a binding list so invoices and other UI is updated when items are changed.
@@ -44,9 +49,9 @@ namespace FootlockerInvoiceApp.Items
             {
                 int rowsReturned = 0;
                 List<Item> myList = new List<Item>();
-                var ds = mySQL.ExecuteSQLStatement("select * from item", ref rowsReturned);
+                var ds = clsDatabase.ExecuteSQLStatement("select * from item", ref rowsReturned);
 
-                //make a list of flights
+                //make a list of Items
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
                     var item = new Item();
@@ -100,6 +105,8 @@ namespace FootlockerInvoiceApp.Items
         // }
 
         //if the item is on an invoice tell the user the invoice id with the item. use a pop up
+
+
         /// <summary>
         /// will check the list of invoices for the item being edited. if found will give user a popup message.
         /// </summary>
@@ -114,7 +121,12 @@ namespace FootlockerInvoiceApp.Items
         /// </summary>
         public void AddItem(string name, string cost, string description) 
         {
-            mySQL.ExecuteNonQuery("Insert Into Item (ItemName, ItemCost, ItemDescription) Values (" + name + ", " + cost + ", " + description + ")");
+
+            //validate the user input
+            isValidInput(name);
+
+            //create the SQL statement and execute statement
+            clsDatabase.ExecuteNonQuery(clsItemsSQL.AddItemSQL(name, cost, description));
         }
 
         //edit items (do not let the code be updated.)
@@ -123,9 +135,11 @@ namespace FootlockerInvoiceApp.Items
         /// </summary>
         public void EditItem(Item item, string name, string cost, string description) 
         {
+            //validate user input
+            isValidInput(name);
             //check if item is on an invoice
             CheckInvoices(item.ItemCode);
-            mySQL.ExecuteNonQuery("Update Items Set ItemName = " + name + "ItemCost = " + cost + "ItemDescription = " + description);
+            clsDatabase.ExecuteNonQuery(clsItemsSQL.EditItemSQL(name, cost, description));
 
         }
 
@@ -137,7 +151,17 @@ namespace FootlockerInvoiceApp.Items
         {
             //check to see if item is on an invoice.
             CheckInvoices(item.ItemCode);
-            mySQL.ExecuteNonQuery("Delete from Item Where ItemID = " + item.ItemCode);
+            clsDatabase.ExecuteNonQuery(clsItemsSQL.DeleteItemSQL(item.ItemCode.ToString()));
+        }
+
+        /// <summary>
+        /// used to validate all user input
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public bool isValidInput(string input) 
+        {
+            return true;
         }
 
     }
