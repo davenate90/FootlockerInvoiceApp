@@ -31,15 +31,26 @@ namespace FootlockerInvoiceApp.Search
         public wndSearch()
         {
             InitializeComponent();
-            PopulateInvoices();
+            PopulateInvoices(true);
+            PopulateFilters();
         }
 
         /// <summary>
         /// 
         /// </summary>
-        private void PopulateInvoices()
+        private void PopulateFilters()
         {
-            invoiceDataGrid.ItemsSource = logic.GetInvoices();
+            totalChargeCmb.ItemsSource = logic.GetCharges();
+            dateCmb.ItemsSource = logic.GetDates();
+            invoiceIDCmb.ItemsSource = logic.GetInvoiceIDs();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void PopulateInvoices(bool clearFilters)
+        {
+            invoiceDataGrid.ItemsSource = logic.GetInvoices(clearFilters);
         }
 
         /// <summary>
@@ -76,6 +87,20 @@ namespace FootlockerInvoiceApp.Search
         private void filter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             logic.FilterResults(invoiceIDCmb.SelectedItem, dateCmb.SelectedItem, totalChargeCmb.SelectedItem);
+            this.PopulateInvoices(false);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void clearBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.PopulateInvoices(true);
+            dateCmb.SelectedIndex = -1;
+            invoiceIDCmb.SelectedIndex = -1;
+            totalChargeCmb.SelectedIndex = -1;
         }
     }
 }
