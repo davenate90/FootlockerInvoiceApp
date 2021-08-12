@@ -5,10 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FootlockerInvoiceApp.Main"
         mc:Ignorable="d"
-        Title="wndMain" Height="450" Width="800">
+        Title="wndMain" Height="450" Width="602.566">
     <Grid>
-        <Button x:Name="Item" Content="Go To Items" HorizontalAlignment="Left" Margin="609,362,0,0" VerticalAlignment="Top" Width="75" Click="Item_Click"/>
-        <Button Content="Search" HorizontalAlignment="Left" Margin="506,362,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Menu HorizontalAlignment="Left" Height="28" Margin="10,10,0,0" VerticalAlignment="Top" Width="182">
+            <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+            <Button x:Name="Item" Content="Go To Items" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="Item_Click"/>
+        </Menu>
+        <Label x:Name="invoiceIDTag" Content="Invoice ID: " HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="addBtn" Content="Add" HorizontalAlignment="Left" Margin="10,389,0,0" VerticalAlignment="Top" Width="75" Click="addBtn_Click"/>
+        <Label x:Name="invoiceIDlbl" Content="" HorizontalAlignment="Left" Margin="83,65,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="editBtn" Content="Edit" HorizontalAlignment="Left" Margin="90,389,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="deleteBtn" Content="Delete" HorizontalAlignment="Left" Margin="170,389,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="invoiceDateTag" Content="Invoice Date:" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="invoiceDatePicker" HorizontalAlignment="Left" Margin="93,91,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="60,122,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="itemsTag" Content="Items: " HorizontalAlignment="Left" Margin="10,117,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="itemPriceTag" Content="Price:" HorizontalAlignment="Left" Margin="192,120,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="priceTxt" HorizontalAlignment="Left" Height="23" Margin="235,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+        <DataGrid x:Name="invoiceItemsGrid" HorizontalAlignment="Left" Height="209" Margin="10,175,0,0" VerticalAlignment="Top" Width="579"/>
+        <Label x:Name="itemsGridTag" Content="Invoice Items:" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="saveBtn" Content="Save" HorizontalAlignment="Left" Margin="514,389,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="removeItemBtn" Content="Remove Item" HorizontalAlignment="Left" Margin="514,149,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="totalPriceTag" Content="Total Price:" HorizontalAlignment="Left" Margin="317,65,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="totalPriceTxt" HorizontalAlignment="Left" Height="23" Margin="389,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
 
     </Grid>
 </Window>

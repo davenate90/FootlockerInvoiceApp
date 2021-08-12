@@ -49,5 +49,10 @@ namespace FootlockerInvoiceApp.Main
             wndSearch search = new wndSearch();
             search.Show();           
         }
+
+        private void addBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.invoiceIDlbl.Content = "TBD";
+        }
     }
 }
