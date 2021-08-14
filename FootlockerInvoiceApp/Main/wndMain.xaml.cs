@@ -44,7 +44,7 @@ namespace FootlockerInvoiceApp.Main
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Search_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
             wndSearch.ShowDialog();
