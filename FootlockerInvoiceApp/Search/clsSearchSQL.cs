@@ -27,7 +27,7 @@ namespace FootlockerInvoiceApp.Search
         {
             try
             {
-                string query = "select * FROM Invoice";
+                string query = "select * FROM Invoices";
 
                 return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
             }
@@ -47,7 +47,7 @@ namespace FootlockerInvoiceApp.Search
         {
             try
             {
-                string query = "select * FROM Invoice WHERE invoiceID = " + invoiceNum;
+                string query = "select * FROM Invoices WHERE InvoiceID = " + invoiceNum;
 
                 return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
             }
@@ -68,7 +68,7 @@ namespace FootlockerInvoiceApp.Search
         {
             try
             {
-                string query = "select * FROM Invoice WHERE invoiceID = " + invoiceNum + "AND invoiceDate = " + invoiceDate;
+                string query = "select * FROM Invoices WHERE InvoiceID = " + invoiceNum + "AND InvoiceDate = " + invoiceDate;
 
                 return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
             }
@@ -90,7 +90,7 @@ namespace FootlockerInvoiceApp.Search
         {
             try
             {
-                string query = "select * FROM Invoice WHERE invoiceID = " + invoiceNum + "AND invoiceDate = " + invoiceDate + "AND totalCost = " + totalCost;
+                string query = "select * FROM Invoices WHERE InvoiceID = " + invoiceNum + "AND InvoiceDate = " + invoiceDate + "AND TotalCost = " + totalCost;
 
                 return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
             }
@@ -111,7 +111,7 @@ namespace FootlockerInvoiceApp.Search
         {
             try
             {
-                string query = "select * FROM Invoice WHERE invoiceDate = " + invoiceDate + "AND totalCost = " + totalCost;
+                string query = "select * FROM Invoices WHERE InvoiceDate = " + invoiceDate + "AND TotalCost = " + totalCost;
 
                 return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
             }
@@ -131,7 +131,7 @@ namespace FootlockerInvoiceApp.Search
         {
             try
             {
-                string query = "select * FROM Invoice WHERE totalCost = " + totalCost;
+                string query = "select * FROM Invoices WHERE TotalCost = " + totalCost;
 
                 return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
             }
@@ -151,7 +151,7 @@ namespace FootlockerInvoiceApp.Search
         {
             try
             {
-                string query = "select * FROM Invoice WHERE invoiceDate = " + invoiceDate;
+                string query = "select * FROM Invoices WHERE InvoiceDate = " + invoiceDate;
 
                 return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
             }
