@@ -181,7 +181,7 @@ namespace FootlockerInvoiceApp.Search
             try
             {
                 int rowsReturned = 0;
-                sql.SearchInvoices(ref rowsReturned, id.ToString(), date.ToString(), charge.ToString());
+                sql.SearchInvoices(ref rowsReturned, id, date, charge);
             }
             catch (Exception ex)
             {

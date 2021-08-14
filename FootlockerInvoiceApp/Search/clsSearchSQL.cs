@@ -43,7 +43,7 @@ namespace FootlockerInvoiceApp.Search
         /// <param name="rowsReturned">rows returned.</param>
         /// <param name="invoiceNum">the invoice id number.</param>
         /// <returns>dataset</returns>
-        public DataSet SearchInvoices(ref int rowsReturned, string invoiceNum)
+        public DataSet SearchInvoices(ref int rowsReturned, int invoiceNum)
         {
             try
             {
@@ -64,7 +64,7 @@ namespace FootlockerInvoiceApp.Search
         /// <param name="invoiceNum">the invoice id number.</param>
         /// <param name="invoiceDate">the date of the invoice.</param>
         /// <returns>dateset</returns>
-        public DataSet SearchInvoices(ref int rowsReturned, string invoiceNum, string invoiceDate)
+        public DataSet SearchInvoices(ref int rowsReturned, int invoiceNum, DateTime invoiceDate)
         {
             try
             {
@@ -86,7 +86,7 @@ namespace FootlockerInvoiceApp.Search
         /// <param name="invoiceDate">the date of the invoice.</param>
         /// <param name="totalCost">The total cost of the invoice.</param>
         /// <returns>dateset</returns>
-        public DataSet SearchInvoices(ref int rowsReturned, string invoiceNum, string invoiceDate, string totalCost)
+        public DataSet SearchInvoices(ref int rowsReturned, int invoiceNum, DateTime invoiceDate, double totalCost)
         {
             try
             {
@@ -107,7 +107,7 @@ namespace FootlockerInvoiceApp.Search
         /// <param name="invoiceDate">the date of the invoice.</param>
         /// <param name="totalCost">The total cost of the invoice.</param>
         /// <returns>dateset</returns>
-        public DataSet SearchInvoices(ref int rowsReturned, string invoiceDate, string totalCost)
+        public DataSet SearchInvoices(ref int rowsReturned, DateTime invoiceDate, double totalCost)
         {
             try
             {
@@ -127,7 +127,7 @@ namespace FootlockerInvoiceApp.Search
         /// <param name="rowsReturned">rows returned.</param>
         /// <param name="totalCost">The total cost of the invoice.</param>
         /// <returns>dateset</returns>
-        public DataSet SearchInvoices(ref int rowsReturned, string totalCost)
+        public DataSet SearchInvoices(ref int rowsReturned, double totalCost)
         {
             try
             {
@@ -147,7 +147,7 @@ namespace FootlockerInvoiceApp.Search
         /// <param name="rowsReturned">rows returned.</param>
         /// <param name="invoiceDate">the date of the invoice.</param>
         /// <returns>dateset</returns>
-        public DataSet SearchInvoices(ref int rowsReturned, string invoiceDate)
+        public DataSet SearchInvoices(ref int rowsReturned, DateTime invoiceDate)
         {
             try
             {
