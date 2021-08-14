@@ -15,17 +15,17 @@ namespace FootlockerInvoiceApp.Search
         /// Sql class and List of search invoice objects.
         /// I wanted to differentiate between the invoice objects I'd be displaying on my screen and the one that will display more info on the main screen.
         private clsSearchSQL sql = new clsSearchSQL();
-        private List<SearchInvoice> myList = new List<SearchInvoice>();
+        private List<Invoice> myList = new List<Invoice>();
 
         /// <summary>
         /// Gets invoices
         /// </summary>
         /// <returns> List of invoices </returns>
-        public List<SearchInvoice> GetInvoices(bool clearFilters)
+        public List<Invoice> GetInvoices(bool clearFilters)
         {
             try
             {
-                List<SearchInvoice> list = new List<SearchInvoice>();
+                List<Invoice> list = new List<Invoice>();
                 if (!clearFilters)
                 {
                     return myList;
@@ -39,12 +39,10 @@ namespace FootlockerInvoiceApp.Search
                     //make a list of flights
                     foreach (DataRow row in ds.Tables[0].Rows)
                     {
-                        var invoice = new SearchInvoice();
+                        var invoice = new Invoice();
                         invoice.invoiceID = (int)row["InvoiceID"];
                         invoice.invoiceDate = Convert.ToDateTime(row["InvoiceDate"]);
-                        invoice.customerName = (string)row["CustFirst_Name"] + " " + (string)row["CustLast_Name"];
-                        invoice.totalItems = Convert.ToInt32(row["TotalItems"]);
-                        invoice.totalCharge = (double)row["TotalCharge"];
+                        invoice.totalCharge = (double)row["TotalCost"];
                         list.Add(invoice);
                     }
                     myList = list;
@@ -176,13 +174,14 @@ namespace FootlockerInvoiceApp.Search
         /// Filters on all combo box filters
         /// </summary>
         /// <param name="id"> invoice id</param>
-        /// <param name="dateTime"> date </param>
+        /// <param name="date"> date </param>
         /// <param name="charge"> total charges </param>
-        private void FilterOnAll(int id, DateTime dateTime, double charge)
+        private void FilterOnAll(int id, DateTime date, double charge)
         {
             try
             {
-
+                int rowsReturned = 0;
+                sql.SearchInvoices(ref rowsReturned, id, date, charge);
             }
             catch (Exception ex)
             {
@@ -292,7 +291,7 @@ namespace FootlockerInvoiceApp.Search
         /// <summary>
         /// class to hold objects of data passed in from the data base.
         /// </summary>
-        public class SearchInvoice
+        public class Invoice
         {
             /// <summary>
             /// the item code
@@ -302,14 +301,6 @@ namespace FootlockerInvoiceApp.Search
             /// name of the item
             /// </summary>
             public DateTime invoiceDate { get; set; }
-            /// <summary>
-            /// cost of the item
-            /// </summary>
-            public string customerName { get; set; }
-            /// <summary>
-            /// short description of the item
-            /// </summary>
-            public int totalItems { get; set; }
             /// <summary>
             /// short description of the item
             /// </summary>
