@@ -160,5 +160,47 @@ namespace FootlockerInvoiceApp.Search
                 throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
             }
         }
+
+        public DataSet GetIDs(ref int rowsReturned)
+        {
+            try
+            {
+                string query = "select InvoiceID from Invoices";
+
+                return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+            }
+        }
+
+        public DataSet GetDates(ref int rowsReturned)
+        {
+            try
+            {
+                string query = "select distinct(InvoiceDate) from Invoices";
+
+                return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+            }
+        }
+
+        public DataSet GetCosts(ref int rowsReturned)
+        {
+            try
+            {
+                string query = "select distinct(TotalCost) from Invoices";
+
+                return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+            }
+        }
     }
 }
