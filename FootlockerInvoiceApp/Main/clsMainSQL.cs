@@ -22,7 +22,7 @@ namespace FootlockerInvoiceApp.Main
         /// <param name="rowsReturned">rows returned.</param>
         /// <param name="invoiceNum">Invoice id number</param>
         /// <returns>Dataset</returns>
-        public DataSet GetInvoice(ref int rowsReturned, int invoiceNum)
+        public DataSet GetInvoice(ref int rowsReturned, string invoiceNum)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace FootlockerInvoiceApp.Main
         {
             try
             {
-                string query = "SELECT ItemCode, ItemDesc, Cost from ItemDesc";
+                string query = "SELECT * from ItemDesc";
 
                 return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
             }
@@ -61,11 +61,11 @@ namespace FootlockerInvoiceApp.Main
         /// <param name="rowsReturned"></param>
         /// <param name="invoiceNum"></param>
         /// <returns>DataSet</returns>
-        public DataSet SearchItems(ref int rowsReturned, int invoiceNum)
+        public DataSet SearchItems(ref int rowsReturned, string invoiceNum)
         {
             try
             {
-                string query = "SELECT LineItems.ItemCode, ItemDesc.ItemDesc, ItemDesc.Cost FROM LineItems, ItemDesc Where LineItems.ItemCode = ItemDesc.ItemCode And LineItems.InvoiceNum = " + invoiceNum;
+                string query = "SELECT LineItems.ItemCode, ItemDesc.ItemDescription, ItemDesc.ItemPrice FROM LineItems, ItemDesc Where LineItems.ItemCode = ItemDesc.ItemCode And LineItems.InvoiceID = " + invoiceNum;
 
                 return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
             }
@@ -81,7 +81,7 @@ namespace FootlockerInvoiceApp.Main
         /// <param name="totalCost">total cost.</param>
         /// <param name="invoiceDate">Invoice date.</param>
         /// <returns>DataSet</returns>
-        public void AddInvoice(DateTime invoiceDate, double totalCost)
+        public void AddInvoice(string invoiceDate, string totalCost)
         {
             try
             {
@@ -102,11 +102,11 @@ namespace FootlockerInvoiceApp.Main
         /// <param name="itemCode">The item code.</param>
         /// <param name="lineItemNum">The line item number.</param>
         /// <returns>DataSet</returns>
-        public void AddLineItem(int invoiceNum, int lineItemNum, int itemCode)
+        public void AddLineItem(string invoiceNum, string lineItemNum, string itemCode)
         {
             try
             {
-                string query = "INSERT INTO Invoice_Items (InvoiceID, LineItemNum, ItemCode) Values (123, 1, 'AA')";
+                string query = "INSERT INTO LineItems (InvoiceID, LineItemNum, ItemCode) Values (" + invoiceNum + ", " + lineItemNum + ", " + itemCode + ")";
 
                 clsDatabase.ExecuteNonQuery(query);
             }
