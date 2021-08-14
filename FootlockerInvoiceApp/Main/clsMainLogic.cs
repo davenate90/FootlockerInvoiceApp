@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace FootlockerInvoiceApp.Main
 {
-    class clsMainLogic
+    public class clsMainLogic
     {
-        public class Inovices
-        {
-        }
     }
 }
