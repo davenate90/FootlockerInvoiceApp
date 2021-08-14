@@ -19,7 +19,7 @@ namespace FootlockerInvoiceApp.Search
         clsDatabase clsDatabase = new clsDatabase();
 
         /// <summary>
-        /// 
+        /// Gets all invoices
         /// </summary>
         /// <param name="rowsReturned"></param>
         /// <returns></returns>
@@ -27,7 +27,131 @@ namespace FootlockerInvoiceApp.Search
         {
             try
             {
-                string query = "select Invoice.InvoiceID, Invoice.InvoiceDate, Customer.CustFirst_Name, Customer.CustLast_Name, Sum(Invoice_Items.Line_Price) as TotalCharge, Sum(Invoice_Items.Quantity) AS TotalItems FROM (Customer INNER JOIN Invoice ON Customer.CustomerID = Invoice.CustomerID) Inner Join Invoice_Items on Invoice.InvoiceId = Invoice_Items.InvoiceID Group by Invoice.InvoiceID, Invoice.InvoiceDate, Customer.CustFirst_Name, Customer.CustLast_Name";
+                string query = "select * FROM Invoice";
+
+                return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Searches invoices based on invoice number
+        /// </summary>
+        /// <param name="rowsReturned">rows returned.</param>
+        /// <param name="invoiceNum">the invoice id number.</param>
+        /// <returns>dataset</returns>
+        public DataSet SearchInvoices(ref int rowsReturned, int invoiceNum)
+        {
+            try
+            {
+                string query = "select * FROM Invoice WHERE invoiceID = " + invoiceNum;
+
+                return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Searches invoices based on invoice number and invoice date
+        /// </summary>
+        /// <param name="rowsReturned">rows returned.</param>
+        /// <param name="invoiceNum">the invoice id number.</param>
+        /// <param name="invoiceDate">the date of the invoice.</param>
+        /// <returns>dateset</returns>
+        public DataSet SearchInvoices(ref int rowsReturned, int invoiceNum, DateTime invoiceDate)
+        {
+            try
+            {
+                string query = "select * FROM Invoice WHERE invoiceID = " + invoiceNum + "AND invoiceDate = " + invoiceDate;
+
+                return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Searches invoices based on invoice number and invoice date and total cost.
+        /// </summary>
+        /// <param name="rowsReturned">rows returned.</param>
+        /// <param name="invoiceNum">the invoice id number.</param>
+        /// <param name="invoiceDate">the date of the invoice.</param>
+        /// <param name="totalCost">The total cost of the invoice.</param>
+        /// <returns>dateset</returns>
+        public DataSet SearchInvoices(ref int rowsReturned, int invoiceNum, DateTime invoiceDate, double totalCost)
+        {
+            try
+            {
+                string query = "select * FROM Invoice WHERE invoiceID = " + invoiceNum + "AND invoiceDate = " + invoiceDate + "AND totalCost = " + totalCost;
+
+                return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Searches invoices based on invoice date and total cost.
+        /// </summary>
+        /// <param name="rowsReturned">rows returned.</param>
+        /// <param name="invoiceDate">the date of the invoice.</param>
+        /// <param name="totalCost">The total cost of the invoice.</param>
+        /// <returns>dateset</returns>
+        public DataSet SearchInvoices(ref int rowsReturned, DateTime invoiceDate, double totalCost)
+        {
+            try
+            {
+                string query = "select * FROM Invoice WHERE invoiceDate = " + invoiceDate + "AND totalCost = " + totalCost;
+
+                return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Searches invoices based on total cost.
+        /// </summary>
+        /// <param name="rowsReturned">rows returned.</param>
+        /// <param name="totalCost">The total cost of the invoice.</param>
+        /// <returns>dateset</returns>
+        public DataSet SearchInvoices(ref int rowsReturned, double totalCost)
+        {
+            try
+            {
+                string query = "select * FROM Invoice WHERE totalCost = " + totalCost;
+
+                return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Searches invoices based on invoice date and total cost.
+        /// </summary>
+        /// <param name="rowsReturned">rows returned.</param>
+        /// <param name="invoiceDate">the date of the invoice.</param>
+        /// <returns>dateset</returns>
+        public DataSet SearchInvoices(ref int rowsReturned, DateTime invoiceDate)
+        {
+            try
+            {
+                string query = "select * FROM Invoice WHERE invoiceDate = " + invoiceDate;
 
                 return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
             }

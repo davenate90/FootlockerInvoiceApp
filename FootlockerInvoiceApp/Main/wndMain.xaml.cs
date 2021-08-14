@@ -23,6 +23,7 @@ namespace FootlockerInvoiceApp.Main
     public partial class wndMain : Window
     {
         wndItems wndItems = new wndItems();
+        wndSearch wndSearch = new wndSearch();
 
         public wndMain()
         {
@@ -43,11 +44,16 @@ namespace FootlockerInvoiceApp.Main
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Search_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-            wndSearch search = new wndSearch();
-            search.Show();           
+            this.Hide();
+            wndSearch.ShowDialog();
+            this.Show();
+        }
+
+        private void addBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.invoiceIDlbl.Content = "TBD";
         }
     }
 }
