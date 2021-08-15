@@ -49,7 +49,7 @@ namespace FootlockerInvoiceApp.Items
             {
                 int rowsReturned = 0;
                 List<Item> myList = new List<Item>();
-                var ds = clsDatabase.ExecuteSQLStatement("select * from item", ref rowsReturned);
+                var ds = clsDatabase.ExecuteSQLStatement("select * from ItemDesc", ref rowsReturned);
 
                 //make a list of Items
                 foreach (DataRow row in ds.Tables[0].Rows)
@@ -92,6 +92,10 @@ namespace FootlockerInvoiceApp.Items
             public string ItemDescription { get; set; }
 
             //put in override for ToString() so combo box has just the name of the items.
+            public override string ToString()
+            {
+                return $"{ItemName}";
+            }
         }
 
         //need a function to get a list of all invoices to see if an item being delted is on an exsisting invoice.

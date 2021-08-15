@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
+using FootlockerInvoiceApp.Items;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FootlockerInvoiceApp.Search
 {
-    class clsSearchLogic
+   public class clsSearchLogic
     {
         
         /// Sql class and List of search invoice objects.
@@ -36,7 +37,7 @@ namespace FootlockerInvoiceApp.Search
 
                 if (rowsReturned > 0)
                 {
-                    //make a list of flights
+                    //make a list of Invoices
                     foreach (DataRow row in ds.Tables[0].Rows)
                     {
                         var invoice = new Invoice();
@@ -306,7 +307,7 @@ namespace FootlockerInvoiceApp.Search
             /// </summary>
             public double totalCharge { get; set; }
 
-            //put in override for ToString() so combo box has just the name of the items.
+
         }
     }
 }

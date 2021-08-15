@@ -7,7 +7,13 @@
         mc:Ignorable="d"
         Title="wndSearch" Height="450" Width="502.86">
     <Grid>
-        <DataGrid x:Name="invoiceDataGrid" HorizontalAlignment="Left" Height="216" Margin="22,128,0,0" VerticalAlignment="Top" Width="453" />
+        <DataGrid x:Name="invoiceDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="216" Margin="22,128,0,0" VerticalAlignment="Top" Width="453" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=invoiceID}" Header="Invoice ID" Width="1*"/>
+                <DataGridTextColumn Binding="{Binding Path=invoiceDate}" Header="Date" Width="3*"/>
+                <DataGridTextColumn Binding="{Binding Path=totalCharge}" Header="Total" Width="2*"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button x:Name="cancelBtn" Content="Cancel" HorizontalAlignment="Left" Margin="329.13,389,0,0" VerticalAlignment="Top" Width="75" Click="cancelBtn_Click"/>
         <Button x:Name="selectBtn" Content="Select" HorizontalAlignment="Left" Margin="237.13,389,0,0" VerticalAlignment="Top" Width="75" Click="selectBtn_Click"/>
         <ComboBox x:Name="invoiceIDCmb" HorizontalAlignment="Left" Margin="22,50,0,0" VerticalAlignment="Top" Width="120"  SelectionChanged="filter_SelectionChanged"/>

@@ -60,10 +60,7 @@ namespace FootlockerInvoiceApp.Search
         /// <param name="e"></param>
         private void cancelBtn_Click(object sender, RoutedEventArgs e)
         {
-            //// pass null through as a parameter. If null is passed through as a parameter then main will populate not invoice information.
-            wndMain mainWnd = new wndMain();
-            mainWnd.Show();
-            this.Close();
+            this.Hide();
         }
 
         /// <summary>
@@ -73,10 +70,13 @@ namespace FootlockerInvoiceApp.Search
         /// <param name="e"></param>
         private void selectBtn_Click(object sender, RoutedEventArgs e)
         {
-            //// pass through the invoice ID with which the main window will do a Scalar query on the invoice id to populate the invoice information.
-            wndMain mainWnd = new wndMain();
-            mainWnd.Show();
-            this.Close();
+            if (invoiceDataGrid.SelectedItem != null)
+            {
+                // pass through the invoice ID with which the main window will do a Scalar query on the invoice id to populate the invoice information.
+                clsSearchLogic.Invoice invoice2 = (clsSearchLogic.Invoice)invoiceDataGrid.SelectedItem;
+                ((wndMain)Application.Current.MainWindow).selectedInvoiceID = invoice2.invoiceID;
+                this.Hide();
+            }
         }
 
         /// <summary>

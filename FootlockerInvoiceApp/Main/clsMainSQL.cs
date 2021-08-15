@@ -17,18 +17,31 @@ namespace FootlockerInvoiceApp.Main
         clsDatabase clsDatabase = new clsDatabase();
 
         /// <summary>
-        /// Gets all invoices
+        /// Gets specific invoice
         /// </summary>
         /// <param name="rowsReturned">rows returned.</param>
         /// <param name="invoiceNum">Invoice id number</param>
         /// <returns>Dataset</returns>
-        public DataSet GetInvoice(ref int rowsReturned, string invoiceNum)
+        public string GetInvoice(string invoiceID)
         {
             try
             {
-                string query = "SELECT InvoiceNum, InvoiceDate, TotalCost FROM Invoices WHERE InvoiceNum = " + invoiceNum;
+                string query = "SELECT * From Invoices WHERE InvoiceID = " + invoiceID;
 
-                return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
+                return query;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+            }
+        }
+
+        public string GetLineItems(string InvoiceID)
+        {
+            try
+            {
+                string query = "SELECT * FROM LineItems WHERE InvoiceID = " + InvoiceID;
+                return query;
             }
             catch (Exception ex)
             {
@@ -37,17 +50,16 @@ namespace FootlockerInvoiceApp.Main
         }
 
         /// <summary>
-        /// Gets all invoices
+        /// search for a specific item.
         /// </summary>
-        /// <param name="rowsReturned"></param>
-        /// <returns>DataSet</returns>
-        public DataSet GetItems(ref int rowsReturned)
+        /// <param name="ItemCode"></param>
+        /// <returns></returns>
+        public string SelectItem(string ItemCode)
         {
             try
             {
-                string query = "SELECT * from ItemDesc";
-
-                return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
+                string query = "SELECT * FROM ItemDesc WHERE ItemCode = " + ItemCode;
+                return query;
             }
             catch (Exception ex)
             {
@@ -56,38 +68,36 @@ namespace FootlockerInvoiceApp.Main
         }
 
         /// <summary>
-        /// Searches items in invoice.
+        /// returns the invoice ID of the last invoice that was created.
         /// </summary>
-        /// <param name="rowsReturned"></param>
-        /// <param name="invoiceNum"></param>
-        /// <returns>DataSet</returns>
-        public DataSet SearchItems(ref int rowsReturned, string invoiceNum)
+        /// <returns></returns>
+        public string LastInvoiceAdded()
         {
             try
             {
-                string query = "SELECT LineItems.ItemCode, ItemDesc.ItemDescription, ItemDesc.ItemPrice FROM LineItems, ItemDesc Where LineItems.ItemCode = ItemDesc.ItemCode And LineItems.InvoiceID = " + invoiceNum;
-
-                return clsDatabase.ExecuteSQLStatement(query, ref rowsReturned);
+                string query = "SELECT MAX(InvoiceID) FROM Invoices";
+                return query;
             }
             catch (Exception ex)
             {
                 throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
             }
+
         }
 
         /// <summary>
-        /// Adds an invoice.
+        /// creates the invoice query
         /// </summary>
         /// <param name="totalCost">total cost.</param>
         /// <param name="invoiceDate">Invoice date.</param>
         /// <returns>DataSet</returns>
-        public void AddInvoice(string invoiceDate, string totalCost)
+        public string AddInvoice(string invoiceDate, string totalCost)
         {
             try
             {
-                string query = "INSERT INTO Invoices(InvoiceDate, TotalCost) Values(" + invoiceDate + ", " + totalCost + ")";
+                string query = "INSERT INTO Invoices(InvoiceDate, TotalCost) Values(#" + invoiceDate + "#, " + totalCost + ")";
 
-                clsDatabase.ExecuteNonQuery(query);
+                return query;
             }
             catch (Exception ex)
             {
@@ -102,13 +112,13 @@ namespace FootlockerInvoiceApp.Main
         /// <param name="itemCode">The item code.</param>
         /// <param name="lineItemNum">The line item number.</param>
         /// <returns>DataSet</returns>
-        public void AddLineItem(string invoiceNum, string lineItemNum, string itemCode)
+        public string AddLineItem(string invoiceNum, string lineItemNum, string itemCode)
         {
             try
             {
                 string query = "INSERT INTO LineItems (InvoiceID, LineItemNum, ItemCode) Values (" + invoiceNum + ", " + lineItemNum + ", " + itemCode + ")";
 
-                clsDatabase.ExecuteNonQuery(query);
+                return query;
             }
             catch (Exception ex)
             {
@@ -117,16 +127,15 @@ namespace FootlockerInvoiceApp.Main
         }
 
         /// <summary>
-        /// Deletes and invoice.
+        /// returns a string to delete specific invoice.
         /// </summary>
         /// <param name="invoiceNum">Invoice number.a</param>
-        public void DeleteInvoice(int invoiceNum)
+        public string DeleteInvoice(string invoiceNum)
         {
             try
             {
                 string query = "DELETE From Invoices WHERE InvoiceID = " + invoiceNum;
-
-                clsDatabase.ExecuteNonQuery(query);
+                return query;
             }
             catch (Exception ex)
             {
@@ -139,13 +148,12 @@ namespace FootlockerInvoiceApp.Main
         /// </summary>
         /// <param name="invoiceNum">Invoice number.</param>
         /// <param name="lineItemNum">line item number.</param>
-        public void DeleteLineItem(int invoiceNum, int lineItemNum)
+        public string DeleteLineItem(string invoiceNum)
         {
             try
             {
-                string query = "DELETE From LineItems WHERE InvoiceID = " + invoiceNum + "AND LineItemNum = " + lineItemNum;
-
-                clsDatabase.ExecuteNonQuery(query);
+                string query = "DELETE From LineItems WHERE InvoiceID = " + invoiceNum;
+                return query;
             }
             catch (Exception ex)
             {
@@ -158,19 +166,20 @@ namespace FootlockerInvoiceApp.Main
         /// </summary>
         /// <param name="invoiceNum">invoice id number.</param>
         /// <param name="totalCost">total cost.</param>
-        public void UpdateTotalCost(int invoiceNum, double totalCost)
+        public string UpdateTotalCost(int invoiceID, double totalCost)
         {
             try
             {
-                string query = "UPDATE Invoices SET TotalCost = " + totalCost + " WHERE InvoiceNum = " + invoiceNum;
+                string query = "IF NOT EXISTS UPDATE Invoices SET TotalCost = " + totalCost + " WHERE InvoiceID = " + invoiceID;
 
-                clsDatabase.ExecuteNonQuery(query);
+                return query;
             }
             catch (Exception ex)
             {
                 throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
             }
         }
+
 
     }
 }
